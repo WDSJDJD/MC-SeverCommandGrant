@@ -1,0 +1,34 @@
+{
+  "display": {
+    "icon": {
+      "id": "super_apples:netherite_apple"
+    },
+    "title": {
+      "text": "\u6b64\u523b\u6211\u65e0\u654c"
+    },
+    "description": {
+      "text": "\u5c14\u7b49\u5747\u4e3a\u877c\u8681"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_netherite_apple": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "super_apples:netherite_apple"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite_apple"
+    ]
+  ]
+}

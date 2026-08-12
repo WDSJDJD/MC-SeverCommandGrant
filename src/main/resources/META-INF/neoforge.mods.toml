@@ -1,0 +1,8 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+[[mods]]
+modId="commandgrant"
+version="1.0.0"
+displayName="Command Grant"
+description="Allows admins to grant single command permissions to players."
