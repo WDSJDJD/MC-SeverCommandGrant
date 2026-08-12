@@ -125,14 +125,120 @@ build/libs/
 🐛 问题反馈
 如果你遇到问题或有建议，请提交 Issue。
 
-text
+
+------------------------------------------------------------------------------------------------------
+
+
+CommandGrant is a **server-side NeoForge mod** for Minecraft 1.21.1 and NeoForge 21.1.219.  
+It allows server administrators to grant individual players permission to use specific commands without giving them full operator status.
+
+For example, you can let a normal player use `/tp` or `/home`, while keeping them restricted from other OP-only commands like `/gamemode` or `/give`.
 
 ---
 
-## 补充说明
+## ✨ Features
 
-1. **替换 GitHub 链接**：文中的 `https://github.com/你的用户名/仓库名/issues` 需要替换为你实际的仓库地址。
-2. **许可证文件**：建议在仓库根目录添加一个 `LICENSE` 文件（内容为 MIT 协议全文），与 README 中的 `[MIT License](LICENSE)` 对应。
-3. **如果需要英文版**：可以告诉我，我可以再生成一份英文 README 或中英双语版本。
+- ✅ Grant permission for any command individually (e.g., `/tp`, `/sethome`)
+- ✅ Permissions persist across server restarts
+- ✅ Admins can view and revoke granted commands at any time
+- ✅ Built-in security blacklist to prevent privilege escalation
+- ✅ Prevents bypassing restrictions through `/execute run` chains
+- ✅ Server-side only; no client installation required
 
-这个 README 涵盖了安装、使用、安全、构建、许可证等所有关键信息，可直接上传到 GitHub。
+---
+
+## 📥 Installation
+
+1. Download the latest `.jar` file (from the Releases page or build it yourself)
+2. Place the file into the server's `mods` folder
+3. Start the server
+
+> Note: This mod **only needs to be installed on the server**. Clients do not need it.
+
+---
+
+## 🛠️ Admin Commands
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `/grant <player> <command>` | Grant a player permission to use a specific command | `/grant Steve tp` |
+| `/revoke <player> <command>` | Remove a player's permission for a command | `/revoke Steve tp` |
+| `/perms <player>` | View a player's granted commands | `/perms Steve` |
+
+> Note: `<command>` should be the **root command** (e.g., `tp`, `home`, `gamemode`) without a slash.  
+> The player must be **online** to be granted permissions.
+
+---
+
+## 🔐 Security Mechanisms
+
+CommandGrant is designed with permission security in mind to prevent privilege escalation.
+
+### 1. Restricted commands by default
+The following commands **cannot** be granted via `/grant`:
+- `grant`
+- `revoke`
+- `perms`
+
+Other sensitive commands like `op`, `deop`, and `stop` can technically be granted, but this is **not recommended** unless you absolutely trust the player.
+
+### 2. Prevents `execute` bypass
+If a player has the `execute` permission but not the `op` permission, the following attempts will be **blocked**:
+```mcfunction
+/execute run op <player>
+/execute as @p run op <player>
+/execute run execute run op <player>
+Any attempt to run a sensitive command through execute run is denied, even if the player has execute permission.
+
+3. Manual config file edits
+Although the mod does not block direct execution of commands like /op if the player has been explicitly granted that permission, we strongly advise against granting op, deop, or stop to untrusted players.
+By default, grant, revoke, and perms cannot be granted through the /grant command; they can only be added by manually editing the JSON file.
+
+📁 Configuration File
+Granted permissions are stored in:
+
+text
+config/commandgrant.json
+Example format:
+
+json
+{
+  "334e0c66-c44b-4694-8a22-a72c437a3d2f": [
+    "tp",
+    "execute"
+  ],
+  "18f8c698-49c4-47e3-845c-b6da23c45832": [
+    "tp"
+  ]
+}
+Keys are player UUIDs
+
+Values are arrays of granted command roots
+
+Changes require a server restart to take effect (or use /grant / /revoke for immediate updates)
+
+🔨 Building from Source
+To build from source, you need:
+
+JDK 21
+
+NeoForge MDK 1.21.1 (21.1.219)
+
+Clone the repository and run:
+
+bash
+./gradlew build
+The output jar will be in:
+
+text
+build/libs/
+Typically named something like commandgrant-1.0.0.jar. Place that file into the server's mods folder.
+
+📜 License
+This project is licensed under the MIT License. You are free to use, modify, and distribute it, but please retain the original author information.
+
+🙏 Acknowledgments
+Thanks to the NeoForge team for providing the modding framework.
+
+🐛 Issues
+If you encounter any problems or have suggestions, please submit an Issue.
