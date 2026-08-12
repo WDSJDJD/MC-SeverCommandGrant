@@ -1,12 +1,12 @@
-CommandGrant – Granular Command Permission Mod for NeoForge
+SeverCommandGrant – Granular Command Permission Mod for NeoForge
 
-CommandGrant is a server-side NeoForge mod for Minecraft 1.21.1 (NeoForge 21.1.219) that allows server administrators to grant individual players permission to use specific commands without giving them full operator status.
+SeverCommandGrant is a server-side NeoForge mod for Minecraft 1.21.1 (NeoForge 21.1.219) that allows server administrators to grant individual players permission to use specific commands without giving them full operator status.
 With simple commands like /grant <player> <command>, admins can allow a player to use /tp, /home, or other commands while keeping them restricted from OP-only commands.
 All granted permissions are saved to a JSON file and persist across server restarts.
 The mod also includes built-in security measures to prevent privilege escalation: it blocks direct execution of sensitive commands like /op and /stop unless explicitly granted, and it prevents players from bypassing restrictions through /execute run chains.
 This makes it ideal for servers that need fine-grained control over player abilities without complex permission plugins.
 
-CommandGrant 是一个 NeoForge 服务端模组，适用于 Minecraft 1.21.1 和 NeoForge 21.1.219。它允许管理员单独为某个玩家开放指定命令权限，而不必给予完整 OP。
+SeverCommandGrant 是一个 NeoForge 服务端模组，适用于 Minecraft 1.21.1 和 NeoForge 21.1.219。它允许管理员单独为某个玩家开放指定命令权限，而不必给予完整 OP。
 通过 /grant 玩家 命令 即可授权，例如允许玩家使用 /tp，但其他需要 OP 的命令仍然不可用。权限数据保存在 JSON 文件中，重启服务器也不会丢失。
 模组内置安全机制：敏感命令默认不可被授权，且能防止玩家利用 /execute run 绕过限制执行 OP 命令。
 适合需要精细权限管理但不想安装复杂权限插件的服务器。
@@ -53,7 +53,7 @@ CommandGrant 是一个 NeoForge 服务端模组，适用于 Minecraft 1.21.1 和
 
 ## 🔐 安全机制
 
-CommandGrant 在设计上考虑了权限安全，防止普通玩家提权：
+SeverCommandGrant 在设计上考虑了权限安全，防止普通玩家提权：
 
 ### 1. 默认禁止授权敏感命令
 以下命令**不能通过 `/grant` 授权**：
@@ -114,7 +114,7 @@ bash
 
 text
 build/libs/
-通常文件名类似 commandgrant-1.0.0.jar，将该文件放入服务器 mods 文件夹即可。
+通常文件名类似 Severcommandgrant-1.0.0.jar，将该文件放入服务器 mods 文件夹即可。
 
 📜 许可证
 本项目采用 MIT License 开源，你可以自由使用、修改和分发，但请保留原作者信息。
@@ -129,7 +129,7 @@ build/libs/
 ------------------------------------------------------------------------------------------------------
 
 
-CommandGrant is a **server-side NeoForge mod** for Minecraft 1.21.1 and NeoForge 21.1.219.  
+SeverCommandGrant is a **server-side NeoForge mod** for Minecraft 1.21.1 and NeoForge 21.1.219.  
 It allows server administrators to grant individual players permission to use specific commands without giving them full operator status.
 
 For example, you can let a normal player use `/tp` or `/home`, while keeping them restricted from other OP-only commands like `/gamemode` or `/give`.
@@ -172,7 +172,7 @@ For example, you can let a normal player use `/tp` or `/home`, while keeping the
 
 ## 🔐 Security Mechanisms
 
-CommandGrant is designed with permission security in mind to prevent privilege escalation.
+SeverCommandGrant is designed with permission security in mind to prevent privilege escalation.
 
 ### 1. Restricted commands by default
 The following commands **cannot** be granted via `/grant`:
@@ -232,7 +232,7 @@ The output jar will be in:
 
 text
 build/libs/
-Typically named something like commandgrant-1.0.0.jar. Place that file into the server's mods folder.
+Typically named something like Severcommandgrant-1.0.0.jar. Place that file into the server's mods folder.
 
 📜 License
 This project is licensed under the MIT License. You are free to use, modify, and distribute it, but please retain the original author information.
